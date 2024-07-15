@@ -61,7 +61,7 @@ export default function ScreenLayout({
           </ThemedView>
           {description && <ThemedText>{description}</ThemedText>}
         </Animated.View>
-        <ThemedView style={styles.content}>{children}</ThemedView>
+        <ThemedView>{children}</ThemedView>
       </Animated.ScrollView>
     </ThemedView>
   );
@@ -81,11 +81,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexGrow: 1,
-    padding: 32,
     gap: 16,
     overflow: "hidden",
-    borderColor: "red",
-    borderWidth: 1,
   },
   titleContainer: {
     flexDirection: "row",
