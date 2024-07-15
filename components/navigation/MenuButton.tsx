@@ -6,9 +6,9 @@ import {
 } from "react-native";
 import { ThemedView } from "../ThemedView";
 import { ThemedText } from "../ThemedText";
-import { ReactElement } from "react";
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 interface IMenuButtonProps {
   title: string;
@@ -25,7 +25,9 @@ export function MenuButton({
 }: IMenuButtonProps) {
   const theme = useColorScheme() ?? "light";
 
-  const handlePress = () => {};
+  const handlePress = () => {
+    router.push(route);
+  };
 
   return (
     <TouchableOpacity disabled={disabled} onPress={handlePress}>

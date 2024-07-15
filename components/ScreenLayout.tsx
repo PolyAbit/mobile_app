@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from "react";
-import { StyleSheet } from "react-native";
+import { useEffect, type PropsWithChildren } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { ThemedView } from "@/components/ThemedView";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -11,11 +11,14 @@ import Animated, {
   useAnimatedStyle,
   useScrollViewOffset,
 } from "react-native-reanimated";
+import { useNavigation } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = PropsWithChildren<{
   title: string;
   emoji?: string;
   description?: string;
+  withHeader?: boolean;
 }>;
 
 const HEADER_HEIGHT = 175;
@@ -25,10 +28,26 @@ export default function ScreenLayout({
   title,
   description = "",
   emoji = undefined,
+  withHeader = true,
 }: Props) {
   const { top } = useSafeAreaInsets();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (withHeader) {
+      navigation.setOptions({
+        title,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={22} />
+          </TouchableOpacity>
+        ),
+      });
+    }
+  }, []);
 
   const headerAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -52,7 +71,9 @@ export default function ScreenLayout({
   });
 
   return (
-    <ThemedView style={[styles.container, { paddingTop: top }]}>
+    <ThemedView
+      style={[styles.container, withHeader ? {} : { paddingTop: top }]}
+    >
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.View style={[styles.header, headerAnimatedStyle]}>
           <ThemedView style={styles.titleContainer}>
