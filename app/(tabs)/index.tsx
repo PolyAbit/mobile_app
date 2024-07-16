@@ -13,14 +13,18 @@ const items = [
     route: "/profile/personal-data",
     icon: "person-circle-outline",
   },
-  { title: "Направления", route: "", icon: "school-outline" },
+  {
+    title: "Направления",
+    route: "/profile/directions",
+    icon: "school-outline",
+  },
 ];
 
 export default function HomeScreen() {
   const { session, isLoading, signOut } = useSession();
 
   if (isLoading) {
-    return <ActivityIndicator size="large"/>
+    return <ActivityIndicator size="large" />;
   }
 
   if (!session) {

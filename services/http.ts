@@ -1,3 +1,4 @@
+import {getItem} from "expo-secure-store";
 import { Api } from "@/constants/Api";
 
 const baseUrl = Api.Content;
@@ -32,7 +33,7 @@ function http<T>(
 
   let modifiedOptions = {
     headers: {
-      Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAcG9seWFiaXQucnUiLCJleHAiOjE3MjEwOTk4OTksInVpZCI6Mn0.Dm8KvYx6xmKCfLiic-GBz61eIMIihvsoxp2PPlYS068"}`,
+      Authorization: `Bearer ${getItem("session")}`,
       "Content-Type": "application/json",
     },
     ...options,

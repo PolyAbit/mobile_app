@@ -1,5 +1,6 @@
 export const Emoji = {
   Hello: "👋",
   House: "🏫",
-  Document: "📝"
+  Document: "📝",
+  Education: "🎓"
 }
