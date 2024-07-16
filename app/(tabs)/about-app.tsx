@@ -22,8 +22,8 @@ export default function TabTwoScreen() {
         <ThemedText type="title">О приложении</ThemedText>
       </ThemedView>
       <ThemedText>
-        <ThemedText type="bold">"PolyAbit"</ThemedText> - это сервис
-        для поступления в Политех.
+        <ThemedText type="bold">"PolyAbit"</ThemedText> - это сервис для
+        поступления в Политех.
       </ThemedText>
       <ThemedText>
         Разработан студентами в качестве научно-исследовательской работы.{" "}
@@ -33,9 +33,8 @@ export default function TabTwoScreen() {
       </ThemedText>
       <Collapsible title="Разработчики">
         <ThemedText>
-          Cтуденты группы{" "}
-          <ThemedText type="bold">5130203/30002</ThemedText> СПбПУ,
-          Александр Кудрявцев и Александр Мураев. Руководитель - Ненад
+          Cтуденты группы <ThemedText type="bold">5130203/30002</ThemedText>{" "}
+          СПбПУ, Александр Кудрявцев и Александр Мураев. Руководитель - Ненад
           Йовановски
         </ThemedText>
       </Collapsible>

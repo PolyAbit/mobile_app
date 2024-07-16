@@ -1,5 +1,5 @@
-import { useEffect, type PropsWithChildren } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { ReactElement, useEffect, type PropsWithChildren } from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { ThemedView } from "@/components/ThemedView";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,6 +19,7 @@ type Props = PropsWithChildren<{
   emoji?: string;
   description?: string;
   withHeader?: boolean;
+  footer?: ReactElement | null;
 }>;
 
 const HEADER_HEIGHT = 175;
@@ -29,6 +30,7 @@ export default function ScreenLayout({
   description = "",
   emoji = undefined,
   withHeader = true,
+  footer = null,
 }: Props) {
   const { top } = useSafeAreaInsets();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -84,6 +86,11 @@ export default function ScreenLayout({
         </Animated.View>
         <ThemedView>{children}</ThemedView>
       </Animated.ScrollView>
+      {footer && (
+        <ThemedView>
+          {footer}
+        </ThemedView>
+      )}
     </ThemedView>
   );
 }
@@ -98,12 +105,6 @@ const styles = StyleSheet.create({
     gap: 16,
     overflow: "hidden",
     height: HEADER_HEIGHT,
-  },
-  content: {
-    flex: 1,
-    flexGrow: 1,
-    gap: 16,
-    overflow: "hidden",
   },
   titleContainer: {
     flexDirection: "row",
