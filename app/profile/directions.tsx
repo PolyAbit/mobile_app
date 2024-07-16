@@ -1,3 +1,4 @@
+import { DirectionCard } from "@/components/cards/DirectionCard";
 import ScreenLayout from "@/components/ScreenLayout";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
@@ -39,7 +40,9 @@ export default function Directions() {
     >
       {loading && <ActivityIndicator size="large" />}
       <ThemedView style={style.content}>
-        <ThemedText>{JSON.stringify(directions)}</ThemedText>
+        {directions.map((direction) => (
+          <DirectionCard direction={direction} key={direction.id} />
+        ))}
       </ThemedView>
     </ScreenLayout>
   );
@@ -48,6 +51,6 @@ export default function Directions() {
 const style = StyleSheet.create({
   content: {
     paddingHorizontal: 32,
-    gap: 16,
+    gap: 24,
   },
 });
