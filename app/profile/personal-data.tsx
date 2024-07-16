@@ -3,10 +3,13 @@ import { TextField } from "@/components/forms/TextField";
 import ScreenLayout from "@/components/ScreenLayout";
 import { ThemedView } from "@/components/ThemedView";
 import { Emoji } from "@/constants/Emoji";
+import { useSession } from "@/contexts/auth";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function PersonalData() {
+  const { session } = useSession();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [middleName, setMiddleName] = useState("");

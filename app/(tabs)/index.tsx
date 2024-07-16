@@ -3,7 +3,9 @@ import { Emoji } from "@/constants/Emoji";
 import { MenuButton } from "@/components/navigation/MenuButton";
 import { Button } from "@/components/forms/Button";
 import { ThemedView } from "@/components/ThemedView";
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
+import { useSession } from "@/contexts/auth";
+import { ActivityIndicator } from "react-native";
 
 const items = [
   {
@@ -15,10 +17,25 @@ const items = [
 ];
 
 export default function HomeScreen() {
+  const { session, isLoading, signOut } = useSession();
+
+  if (isLoading) {
+    return <ActivityIndicator size="large"/>
+  }
+
+  if (!session) {
+    return <Redirect href="/sign-in" />;
+  }
 
   const footer = (
     <ThemedView style={{ paddingHorizontal: 32, paddingVertical: 16 }}>
-      <Button text="Выйти из приложения" onPress={() => router.replace('/sign-in')} />
+      <Button
+        text="Выйти из приложения"
+        onPress={() => {
+          signOut();
+          router.replace("/sign-in");
+        }}
+      />
     </ThemedView>
   );
 
