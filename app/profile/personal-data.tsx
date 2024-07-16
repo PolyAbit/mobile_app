@@ -5,7 +5,6 @@ import { ThemedView } from "@/components/ThemedView";
 import { Emoji } from "@/constants/Emoji";
 import { FetchError, http } from "@/services/http";
 import { ProfileType } from "@/types/profile";
-import { cons } from "fp-ts/lib/ReadonlyNonEmptyArray";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, StyleSheet } from "react-native";
 
